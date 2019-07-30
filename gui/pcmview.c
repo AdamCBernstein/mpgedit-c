@@ -545,8 +545,8 @@ static gint button_press_event( GtkWidget      *widget,
 {
     mpgedit_pcmview_ctx *gctx = GLOBAL_CTX(data);
     unsigned int        clicked_button;
-    int pcmvalue;
-    long pcmsec, pcmmsec;
+    int pcmvalue = 0;
+    long pcmsec = 0, pcmmsec = 0;
 
 #if 0
     if (event->button == 1 && gctx->pixmap)
@@ -585,8 +585,8 @@ static gint button_release_event(GtkWidget      *widget,
 {
     mpgedit_pcmview_ctx *gctx = GLOBAL_CTX(data);
     unsigned int        clicked_button;
-    int                 pcmvalue;
-    long                pcmsec, pcmmsec;
+    int                 pcmvalue = 0;
+    long                pcmsec = 0, pcmmsec = 0;
     int                 event_delta = 0;
 
     D_printf(("button_release_event: b=%d, %d %d\n",
