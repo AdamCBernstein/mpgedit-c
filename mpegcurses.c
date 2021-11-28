@@ -605,6 +605,7 @@ char *curs_edit_line_format(edit_window *ewin, edit_line *e, char *buf)
     }
     len = strlen(e->filename.name);
     getmaxyx(ewin->win, maxy, maxx);
+    maxy = maxy; /* silence compiler warning */
     win_width = maxx - CURS_TIMEFIELD_WIDTH;
 
     if (len > win_width) {
@@ -1520,6 +1521,7 @@ int curs_load_abandoned_edits(char        *file,
      * more el_lines were loaded than can be displayed.
      */
     getmaxyx(ewin->win, maxy, maxx);
+    maxx = maxx; /* silence compiler warning */
     if (ewin->y >= maxy) {
         ewin->y = maxy - 1;
         earray->i = ewin->y;
@@ -2064,6 +2066,7 @@ int curs_prompt_yes_no_response(char *prompt, edit_window *ewin, WINDOW *output)
     int         winx, winy;
 
     getmaxyx(sigwinch_ctx.root, winy, winx);
+    winy = winy; /* silence compiler warning */
     curs_input_fname_init(&quit_response, winx-1);
 
     strcpy(quit_response.name, "");
@@ -2095,7 +2098,6 @@ int curs_play(cmdflags   *argvflags,
     int                 quit = 0;
     int                 status;
     char                stime_fmt[32];
-    char                etime_fmt[32];
     char                duration_time_fmt[32];
     editspec_t          *edits = NULL;
     int                 winy, winx;
@@ -2153,7 +2155,6 @@ int curs_play(cmdflags   *argvflags,
     refresh();
 
     stime_fmt[0] = '\0';
-    etime_fmt[0] = '\0';
 
     status = curs_edit_window_init(&ewin, winy, winx);
     if (!status) {

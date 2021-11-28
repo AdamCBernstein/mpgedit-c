@@ -2,7 +2,7 @@
 #
 include alsa.def
 
-CFLAGS = -fPIC -Dlint -DSTDC_HEADERS -Wall $(CDEBUGFLAGS) $(CFLAGS1) $(OSS_OPTIONS)
+CFLAGS = -fPIC -Dlint -DSTDC_HEADERS -Wall -Werror $(CDEBUGFLAGS) $(CFLAGS1) $(OSS_OPTIONS)
 
 CDEBUGFLAGS = -O3 
 CFLAGS1     = -Iinclude -Ilibmp3lame -Impglib $(INCLUDEMAD)
@@ -68,7 +68,7 @@ libmpgeditlib.a: $(mpgeditlib_objs)
 	ar ruv libmpgeditlib.a $(mpgeditlib_objs)
 
 libmpgedit.so: $(mpgeditlib_objs)
-	$(CC) -fPIC -rdynamic -shared -o libmpgedit.so $(mpgeditlib_objs)
+	$(CC) -fPIC -rdynamic -shared -o libmpgedit.so $(mpgeditlib_objs) -ldl
 
 subdirs:
 	(cd mpglib; make -f makefile.linux)

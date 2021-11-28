@@ -1190,8 +1190,7 @@ void _mpgedit_decode_file(char *fname,
         go = mpgedit_play_decode_frame(
                  play_ctx, &pcmbuf, &pcmlen, &bsbytes);
         if (go && argvflags->Ds_flag) {
-            int sts;
-            sts = fwrite(pcmbuf, pcmlen, 1, stdout);
+            fwrite(pcmbuf, pcmlen, 1, stdout);
         }
     } while (go);
 
@@ -1354,7 +1353,9 @@ int main(int argc, char *argv[])
     int              edit_indx;
     editspec_t       *next_editspec;
     int              next_editspec_len;
+#if 0
     int              outfile_indx;
+#endif
     char             *edit_outfilename = NULL;
     char             *cp;
     long             tprev = 0;
@@ -1799,7 +1800,9 @@ int main(int argc, char *argv[])
 
     edit_indx    = 0;
     edit_ctx     = NULL;
+#if 0
     outfile_indx = 1;
+#endif
 
     /* When very verbose, print output from every frame */
     if (argvflags.v_flag > 1) {

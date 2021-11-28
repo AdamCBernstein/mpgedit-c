@@ -387,7 +387,7 @@ int audio_set_gain(struct audio_info_struct *ai)
     int rvol;
     int lvol;
     long volume;
-    long old_volume;
+    long old_volume = 0;
 
     if (!ai) {
         return -1;

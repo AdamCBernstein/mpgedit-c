@@ -853,8 +853,6 @@ int mpgedit_edit_times_init(editspec_t *edits)
     char *name = NULL;
     char *sp;
     char *ep;
-    long sec;
-    long usec;
     int  i;
     int status = 1;
     char *tmptimespec;
@@ -862,8 +860,6 @@ int mpgedit_edit_times_init(editspec_t *edits)
 
     cnt = mpgedit_editspec_get_length(edits);
     for (i=cnt-1; i>=0; i--) {
-        sec = usec = 0;
-
         if (edits->body[i].timespec) {
             /*
              * Multiple time specs can be specified before the file name.
@@ -957,7 +953,7 @@ char *mpgedit_edit_validate_times(editspec_t *edits, int start, int cnt)
     int                 end;
 
     edits_cnt = mpgedit_editspec_get_length(edits);
-    memset(&mpegtval, sizeof(mpegtval), 0);
+    memset(&mpegtval, 0, sizeof(mpegtval));
     end = start+cnt;
     if (cnt > edits_cnt || cnt == -1) {
         end = edits_cnt;

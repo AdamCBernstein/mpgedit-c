@@ -1,8 +1,8 @@
-CFLAGS      = -fPIC -Dlint -DSTDC_HEADERS -Wall $(CDEBUGFLAGS) $(CFLAGS1)
+CFLAGS      = -fPIC -Dlint -DSTDC_HEADERS -Wall -Werror $(CDEBUGFLAGS) $(CFLAGS1)
 CFLAGS1     = -I.. `pkg-config --cflags gtk+-2.0`
 CDEBUGFLAGS = -O3
 
-LDLIBS      = `pkg-config --libs gtk+-2.0`
+LDLIBS      = `pkg-config --libs gtk+-2.0` -ldl
 
 # Enable these for debugging and Electric Fence memory debugging
 # CDEBUGFLAGS = -g -D_DEBUG
@@ -19,8 +19,7 @@ XMPGEDIT_OBJS = player.o playctrl.o editor.o volume.o pcmview.o ../wav16.o \
 
 xmpgedit: $(XMPGEDIT_OBJS) ../libmpgeditlib.a
 	$(CC) $(LDFLAGS) $(XMPGEDIT_OBJS) -o xmpgedit -L.. -lmpgeditlib \
-               `pkg-config --libs gtk+-2.0` $(EFENCE)
-
+               `pkg-config --libs gtk+-2.0` $(EFENCE) -ldl
 
 spixmap: spixmap.o
 	$(CC) $(LDFLAGS) spixmap.o -o spixmap $(LDLIBS)

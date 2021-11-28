@@ -52,7 +52,6 @@ int main(int argc, char *argv[])
     char          *cp;
     char          *str;
     mpeg_header_data mpeg_header;
-    int           sts;
 
     memset(&X, 0, sizeof(X));
 
@@ -89,7 +88,7 @@ int main(int argc, char *argv[])
         perror("fopen");
         return 1;
     }
-    memset(&mpeg_header, sizeof(mpeg_header), 0);
+    memset(&mpeg_header, 0, sizeof(mpeg_header));
     header_size = mpegfio_has_xing_header(fp, &mpeg_header, &X, 0);
     if (header_size == 0) {
         fprintf(stderr, "File does not have XING header\n");
@@ -133,7 +132,7 @@ int main(int argc, char *argv[])
             printf("%s", str);
             printf("==================================\n");
             fseek(fp, 0, SEEK_SET);
-            sts = fwrite(X.xingbuf, header_size, 1, fp);
+            fwrite(X.xingbuf, header_size, 1, fp);
         }
         else {
             printf("Did not find Xing header\n");

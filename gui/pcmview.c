@@ -285,14 +285,12 @@ static void draw_pcmdata_values(mpgedit_pcmview_ctx *gctx)
     int          total_secs = 0;
     char         str[128];
     int          draw_count = 0;
-    long         prev_save;
     long         read_pcm_sec;
     long         read_pcm_msec;
 
     if (!gctx || !gctx->pcmfp) {
         return;
     }
-    prev_save = mpgedit_pcmlevel_tell(gctx->pcmfp);
     read_sts  = mpgedit_pcmlevel_read_entry(gctx->pcmfp, &pcm_value,
                                             &read_pcm_sec, &read_pcm_msec);
     if (!read_sts) {
@@ -719,7 +717,8 @@ static void leave_event(GtkWidget *widget,
     mpgedit_pcmview_ctx      *gctx = GLOBAL_CTX(data);
     pcmview_scroll_idlectx_t *scrollctx;
 
-    if (!gctx->button_state == BUTTON_DOWN) {
+    /* adam/TBD: Fixed compiler warning; missing parentheses */
+    if (!(gctx->button_state == BUTTON_DOWN)) {
         return;
     }
 

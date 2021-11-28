@@ -2383,12 +2383,10 @@ void cb_record_time(GtkWidget *widget, gpointer data)
     long            sec;
     long            usec;
     int             changed;
-    edit_ctx        *editctx;
 
     if (gvctx->editctx.cursor->row_num == 0) {
         return;
     }
-    editctx = &gvctx->editctx;
     sec  = gvctx->idlectx->elapsed_sec;
     usec = gvctx->idlectx->elapsed_usec;
     gvctx->idlectx->save_stime_sec = sec;
@@ -3611,15 +3609,19 @@ gint cb_edit_idle_editfile(gpointer data)
     GtkWidget         *dialog;
     int               append    = FALSE;
     int               *indexptr = NULL;
+    char              *cp;
+
+#if defined(_DEBUG)
     char              *filename;
     long              ssec;
     long              susec;
     long              esec;
     long              eusec;
-    char              *cp;
 
     eusec = esec = susec = ssec = 0;
     filename = NULL;
+#endif /* defined(_DEBUG) */
+
     if (ctx->gvctx->output_action == OUTPUT_FILE_APPEND_JOIN) {
         append = TRUE;
     }

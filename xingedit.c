@@ -52,7 +52,7 @@ static int _mpgedit_xing_modify(
     int              edit_bytes;
     int              is_vbr = 0;
 
-    memset(&mpeg_header, sizeof(mpeg_header), 0);
+    memset(&mpeg_header, 0, sizeof(mpeg_header));
     memset(&X, 0, sizeof(X));
 
     if (!fp) {
