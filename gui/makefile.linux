@@ -21,7 +21,6 @@ xmpgedit: $(XMPGEDIT_OBJS) ../libmpgeditlib.a
 	$(CC) $(LDFLAGS) $(XMPGEDIT_OBJS) -o xmpgedit -L.. -lmpgeditlib \
                `pkg-config --libs gtk+-2.0` $(EFENCE) -ldl
 
-
 spixmap: spixmap.o
 	$(CC) $(LDFLAGS) spixmap.o -o spixmap $(LDLIBS)
 

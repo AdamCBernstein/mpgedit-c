@@ -1353,6 +1353,9 @@ int main(int argc, char *argv[])
     int              edit_indx;
     editspec_t       *next_editspec;
     int              next_editspec_len;
+#if 0
+    int              outfile_indx;
+#endif
     char             *edit_outfilename = NULL;
     char             *cp;
     long             tprev = 0;
@@ -1797,6 +1800,9 @@ int main(int argc, char *argv[])
 
     edit_indx    = 0;
     edit_ctx     = NULL;
+#if 0
+    outfile_indx = 1;
+#endif
 
     /* When very verbose, print output from every frame */
     if (argvflags.v_flag > 1) {
@@ -1883,7 +1889,13 @@ int main(int argc, char *argv[])
  * option that disables the automatic sequential numbering of the
  * output files.
  */
+#if 1
             edit_outfilename = build_edit_filename(edit_filename, NULL);
+#else
+            edit_outfilename = mpgedit_edit_make_output_filename(
+                                   ".", edit_filename,
+                                   "mp3", &outfile_indx);
+#endif
         }
 
         
