@@ -277,7 +277,7 @@ static int detect_segments(char *levels_file,
     int avg;
     int pcmmax;
     long sec, msec;
-#if 0
+#if 0 /* disabled below */
     deltalist  *deltas;
     deltaentry *delta_slopes;
 #endif
@@ -314,7 +314,7 @@ static int detect_segments(char *levels_file,
 #endif
 
     memset(&pcmlist, 0, sizeof(pcmlist));
-#if 0
+#if 0 /* disabled below */
     deltas       = deltalist_alloc(20);
     delta_slopes = (deltaentry *) calloc(20, sizeof(deltaentry));
 #endif
