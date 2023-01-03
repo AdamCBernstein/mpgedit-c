@@ -5,7 +5,7 @@
 # Uncomment following line to enable volume and mixer for 
 # systems with broken PCM mixer
 #OSS_OPTIONS = -DOSS_DSP_MIXER_BROKEN
-ALSA_DEFINES = -DALSA -DASOUND_H
+ALSA_DEFINES = -DALSA -DASOUNDLIB_H
 ALSA_LIB     = -lasound
 INCLUDEMAD  = -Imad/include
 LIBMAD      = -Lmad/linux -lmad

@@ -2155,7 +2155,6 @@ int curs_play(cmdflags   *argvflags,
     refresh();
 
     stime_fmt[0] = '\0';
-
     status = curs_edit_window_init(&ewin, winy, winx);
     if (!status) {
         fprintf(stderr, "curs_edit_window_init failed\n");
